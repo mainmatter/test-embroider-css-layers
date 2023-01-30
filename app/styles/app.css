@@ -1,0 +1,5 @@
+/* import scoped-components.css */
+
+/* Path: app/styles/scoped-components.css */
+@import url('scoped-components.css');
+@import url('my.css');
