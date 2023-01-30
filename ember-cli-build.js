@@ -27,5 +27,22 @@ module.exports = function (defaults) {
         package: 'qunit',
       },
     ],
+    packagerOptions: {
+      webpackConfig: {
+        module: {
+          rules: [
+            {
+              test: /\.css$/,
+              use: [
+                {
+                  loader:
+                    '/Users/stanislav/simplabs/test-embroider-css-layers/layer-loader.js',
+                },
+              ],
+            },
+          ],
+        },
+      },
+    },
   });
 };
