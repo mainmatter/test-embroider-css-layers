@@ -4,3 +4,14 @@ h1 {
 h1::before {
   content: 'my-component.css -> ';
 }
+
+.some-class {
+  color: blue;
+}
+
+.other-class {
+  color: blue;
+}
+.stan {
+  font-style: italic;
+}
