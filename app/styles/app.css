@@ -1,5 +1,4 @@
-/* import scoped-components.css */
-
-/* Path: app/styles/scoped-components.css */
-@import url('scoped-components.css');
-@import url('my.css');
+/* define order of css layers */
+@layer base, components;
+/* @layer components, base; */
+@import url('global.css') layer(base);

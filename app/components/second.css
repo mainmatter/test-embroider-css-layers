@@ -1,0 +1,6 @@
+.second{
+  color: green;
+}
+.second::before{
+  content:'second.css -> '
+}
