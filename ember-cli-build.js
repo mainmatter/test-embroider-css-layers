@@ -31,6 +31,19 @@ module.exports = function (defaults) {
     packagerOptions: {
       webpackConfig: {
         plugins: [new ScopedComponents()],
+        module: {
+          rules: [
+            {
+              test: /\.hbs$/,
+              use: [
+                {
+                  loader:
+                    '/Users/stanislav/simplabs/test-embroider-css-layers/scoped-hbs-loader.js',
+                },
+              ],
+            },
+          ],
+        },
       },
     },
   });
