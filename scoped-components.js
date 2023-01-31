@@ -34,7 +34,7 @@ function simpleAppend(css, postfix) {
 
 module.exports = class ScopedComponents {
   apply(compiler) {
-    compiler.hooks.emit.tapAsync(
+    compiler.hooks.make.tapAsync(
       'ScopedComponents',
       (compilation, callback) => {
         const cssFiles = glob.sync(
