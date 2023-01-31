@@ -1,56 +1,15 @@
-# test-embroider-css-layers
+# Requirement
 
-This README outlines the details of collaborating on this Ember application.
-A short introduction of this app could easily go here.
+A custom-css-loader should discover `@import url('scoped-components.css')` in `app/styles/app.css`.
+If the `scoped-components.css` is imported then the custom-css-loader will load and emit all co-located CSS files.
 
-## Prerequisites
+## 1
 
-You will need the following things properly installed on your computer.
+Problem is that `app/styles/app.css` is not imported to any JS file. So the custom-css-loader will not discover it.
+There is probably used `CopyWebpackPlugin` to copy the `app/styles/app.css` to the dist folder directly. In this case the custom-css-loader will not discover it. (checking it by debugging embroider and searching where the webpack config is created)
 
-* [Git](https://git-scm.com/)
-* [Node.js](https://nodejs.org/) (with npm)
-* [Ember CLI](https://cli.emberjs.com/release/)
-* [Google Chrome](https://google.com/chrome/)
+> Note: I did not find how the `app/styles/app.css` is copied to the dist folder. If it was imported to some JS file then the custom-css-loader will discover imports inside it.
 
-## Installation
+## 2 webpack plugin
 
-* `git clone <repository-url>` this repository
-* `cd test-embroider-css-layers`
-* `npm install`
-
-## Running / Development
-
-* `ember serve`
-* Visit your app at [http://localhost:4200](http://localhost:4200).
-* Visit your tests at [http://localhost:4200/tests](http://localhost:4200/tests).
-
-### Code Generators
-
-Make use of the many generators for code, try `ember help generate` for more details
-
-### Running Tests
-
-* `ember test`
-* `ember test --server`
-
-### Linting
-
-* `npm run lint`
-* `npm run lint:fix`
-
-### Building
-
-* `ember build` (development)
-* `ember build --environment production` (production)
-
-### Deploying
-
-Specify what it takes to deploy your app.
-
-## Further Reading / Useful Links
-
-* [ember.js](https://emberjs.com/)
-* [ember-cli](https://cli.emberjs.com/release/)
-* Development Browser Extensions
-  * [ember inspector for chrome](https://chrome.google.com/webstore/detail/ember-inspector/bmdblncegkenkacieihfhpjfppoconhi)
-  * [ember inspector for firefox](https://addons.mozilla.org/en-US/firefox/addon/ember-inspector/)
+I am going to create a webpack plugin which will discover all co-located CSS files and will emit them to the dist folder combined to one file `scoped-components.css`.
