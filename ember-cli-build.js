@@ -21,6 +21,7 @@ module.exports = function (defaults) {
   // along with the exports of each module as its value.
 
   const { Webpack } = require('@embroider/webpack');
+  const ScopedComponents = require('./scoped-components');
   return require('@embroider/compat').compatBuild(app, Webpack, {
     skipBabel: [
       {
@@ -29,19 +30,7 @@ module.exports = function (defaults) {
     ],
     packagerOptions: {
       webpackConfig: {
-        module: {
-          rules: [
-            {
-              test: /\.css$/,
-              use: [
-                {
-                  loader:
-                    '/Users/stanislav/simplabs/test-embroider-css-layers/layer-loader.js',
-                },
-              ],
-            },
-          ],
-        },
+        plugins: [new ScopedComponents()],
       },
     },
   });
