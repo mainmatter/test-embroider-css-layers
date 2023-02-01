@@ -1,6 +1,7 @@
 'use strict';
 
 const EmberApp = require('ember-cli/lib/broccoli/ember-app');
+const path = require('path');
 
 module.exports = function (defaults) {
   const app = new EmberApp(defaults, {
@@ -21,7 +22,7 @@ module.exports = function (defaults) {
   // along with the exports of each module as its value.
 
   const { Webpack } = require('@embroider/webpack');
-  const ScopedComponents = require('./ember-scoped-css/scoped-components');
+  const { ScopedComponents, scopedHbsLoader } = require('ember-scoped-css');
   return require('@embroider/compat').compatBuild(app, Webpack, {
     skipBabel: [
       {
@@ -30,15 +31,19 @@ module.exports = function (defaults) {
     ],
     packagerOptions: {
       webpackConfig: {
-        plugins: [new ScopedComponents()],
+        plugins: [
+          new ScopedComponents(path.resolve(__dirname, 'app/components')),
+        ],
         module: {
           rules: [
             {
               test: /\.hbs$/,
               use: [
                 {
-                  loader:
-                    '/Users/stanislav/simplabs/test-embroider-css-layers/ember-scoped-css/scoped-hbs-loader.js',
+                  loader: require.resolve(
+                    'ember-scoped-css/src/scoped-hbs-loader.js'
+                  ),
+                  // '/Users/stanislav/simplabs/test-embroider-css-layers/ember-scoped-css/scoped-hbs-loader.js',
                 },
               ],
             },

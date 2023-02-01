@@ -32,6 +32,8 @@ Checking why I cannot use css loader to load css files. Looks like css files are
 
 I debugged embroider building process, and I have found pathToVanillaApp. This app is passed to webpack, so I am going to see how app.css is copied to the dist folder.
 
+> Note: Looks like hot reloading is not working in embroider app.
+
 ## 5. unplugin
 
 1. Wrap everything in unplugin

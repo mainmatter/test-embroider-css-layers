@@ -5,14 +5,22 @@ const md5 = require('blueimp-md5');
 const rewriteCss = require('./rewriteCss');
 
 module.exports = class ScopedComponents {
+  componentsDir;
+
+  constructor(componentsDir) {
+    this.componentsDir = componentsDir;
+  }
+
   apply(compiler) {
     compiler.hooks.make.tapAsync(
       'ScopedComponents',
       (compilation, callback) => {
         // Get all the CSS files in the app/components directory
-        const cssFiles = glob.sync(
-          path.resolve(__dirname, '../app/components/*.css')
-        );
+        const cssFiles = glob.sync(path.resolve(this.componentsDir, '*.css'));
+
+        if (cssFiles.length === 0) {
+          callback();
+        }
 
         // Rewrite the CSS files
         const rewritenFiles = cssFiles.map((file) => {
