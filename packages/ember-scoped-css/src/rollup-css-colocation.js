@@ -24,9 +24,13 @@ module.exports = function rollupCssColocation(options = {}) {
           const { classes, tags } = getClassesTagsFromCss(css);
           const postfix = md5(path.basename(cssFileName)).substring(0, 8);
 
-          const rewrittenHbsJs = replaceHbsInJs(code, (hbs) => {
-            return rewriteHbs(hbs, classes, tags, postfix);
-          });
+          const rewrittenHbsJs = replaceHbsInJs(
+            'precompileTemplate',
+            code,
+            (hbs) => {
+              return rewriteHbs(hbs, classes, tags, postfix);
+            }
+          );
 
           return rewrittenHbsJs;
         }

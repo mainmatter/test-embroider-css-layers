@@ -111,6 +111,7 @@ importers:
       ember-resolver: ^8.0.3
       ember-scoped-css: workspace:*
       ember-source: ~4.8.0
+      ember-template-imports: ^3.4.1
       ember-template-lint: ^4.16.1
       eslint: ^7.32.0
       eslint-config-prettier: ^8.5.0
@@ -153,6 +154,7 @@ importers:
       ember-resolver: 8.1.0
       ember-scoped-css: link:../ember-scoped-css
       ember-source: 4.8.4_klhxxmjkcvtuhwro2kkspsfzna
+      ember-template-imports: 3.4.1
       ember-template-lint: 4.18.2
       eslint: 7.32.0
       eslint-config-prettier: 8.6.0_eslint@7.32.0
@@ -287,7 +289,7 @@ packages:
       '@babel/core': ^7.0.0
     dependencies:
       '@babel/compat-data': 7.20.14
-      '@babel/core': 7.20.12
+      '@babel/core': 7.20.12_supports-color@8.1.1
       '@babel/helper-validator-option': 7.18.6
       browserslist: 4.21.5
       lru-cache: 5.1.1

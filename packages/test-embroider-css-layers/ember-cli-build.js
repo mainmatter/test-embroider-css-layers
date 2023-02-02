@@ -65,6 +65,17 @@ module.exports = function (defaults) {
               ],
               exclude: [/node_modules/, /dist/, /assets/],
             },
+            // {
+            //   test: /\.gjs$/,
+            //   use: [
+            //     {
+            //       loader: require.resolve(
+            //         'ember-scoped-css/src/scoped-gjs-loader.js'
+            //       ),
+            //     },
+            //   ],
+            //   exclude: [/node_modules/, /dist/, /assets/],
+            // },
           ],
         },
       },
