@@ -5,10 +5,10 @@ const rewriteCss = require('./rewriteCss');
 
 module.exports = function (source) {
   const cssPath = this.resourcePath;
-  const jsPath = cssPath.replace('.css', '.js');
+  const hbsPath = cssPath.replace('.css', '.hbs');
   // check if the css file exists
-  const jsExists = existsSync(jsPath);
-  if (jsExists) {
+  const hbsExists = existsSync(hbsPath);
+  if (hbsExists) {
     const cssFileName = basename(cssPath);
     const postfix = md5(cssFileName).substring(0, 8);
     const rewrittenCss = rewriteCss(source, postfix);
