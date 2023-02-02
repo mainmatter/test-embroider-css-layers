@@ -101,6 +101,7 @@ importers:
       prettier: ^2.7.1
       qunit: ^2.19.2
       qunit-dom: ^2.0.0
+      scoped-addon: workspace:*
       webpack: ^5.74.0
     devDependencies:
       '@ember/optional-features': 2.0.0
@@ -142,6 +143,7 @@ importers:
       prettier: 2.8.3
       qunit: 2.19.4
       qunit-dom: 2.0.0
+      scoped-addon: link:../scoped-addon
       webpack: 5.75.0
 
 packages:
