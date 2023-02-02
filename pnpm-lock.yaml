@@ -46,6 +46,7 @@ importers:
       '@embroider/addon-shim': ^1.0.0
       '@rollup/plugin-babel': ^5.3.0
       concurrently: ^7.2.1
+      ember-scoped-css: workspace:*
       ember-template-lint: ^4.0.0
       eslint: ^7.32.0
       eslint-config-prettier: ^8.3.0
@@ -66,6 +67,7 @@ importers:
       '@embroider/addon-dev': 3.0.0_rollup@2.79.1
       '@rollup/plugin-babel': 5.3.1_3dsfpkpoyvuuxyfgdbpn4j4uzm
       concurrently: 7.6.0
+      ember-scoped-css: link:../ember-scoped-css
       ember-template-lint: 4.18.2
       eslint: 7.32.0
       eslint-config-prettier: 8.6.0_eslint@7.32.0
@@ -103,7 +105,7 @@ importers:
       ember-page-title: ^7.0.0
       ember-qunit: ^6.0.0
       ember-resolver: ^8.0.3
-      ember-scoped-css-unplugin: workspace:*
+      ember-scoped-css: workspace:*
       ember-source: ~4.8.0
       ember-template-lint: ^4.16.1
       eslint: ^7.32.0
@@ -145,7 +147,7 @@ importers:
       ember-page-title: 7.0.0
       ember-qunit: 6.1.1_nkeakyjikpptrn7cquouvqwb6a
       ember-resolver: 8.1.0
-      ember-scoped-css-unplugin: link:../ember-scoped-css-unplugin
+      ember-scoped-css: link:../ember-scoped-css
       ember-source: 4.8.4_klhxxmjkcvtuhwro2kkspsfzna
       ember-template-lint: 4.18.2
       eslint: 7.32.0

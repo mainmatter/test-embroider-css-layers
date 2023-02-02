@@ -22,7 +22,7 @@ module.exports = function (defaults) {
   // along with the exports of each module as its value.
 
   const { Webpack } = require('@embroider/webpack');
-  const { UnpluginScopedComponents } = require('ember-scoped-css-unplugin');
+  const { ScopedComponents, scopedHbsLoader } = require('ember-scoped-css');
   return require('@embroider/compat').compatBuild(app, Webpack, {
     skipBabel: [
       {
@@ -31,7 +31,24 @@ module.exports = function (defaults) {
     ],
     packagerOptions: {
       webpackConfig: {
-        plugins: [UnpluginScopedComponents.webpack({})],
+        plugins: [
+          new ScopedComponents(path.resolve(__dirname, 'app/components')),
+        ],
+        module: {
+          rules: [
+            {
+              test: /\.hbs$/,
+              use: [
+                {
+                  loader: require.resolve(
+                    'ember-scoped-css/src/scoped-hbs-loader.js'
+                  ),
+                  // '/Users/stanislav/simplabs/test-embroider-css-layers/ember-scoped-css/scoped-hbs-loader.js',
+                },
+              ],
+            },
+          ],
+        },
       },
     },
   });

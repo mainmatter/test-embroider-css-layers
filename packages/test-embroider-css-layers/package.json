@@ -48,7 +48,7 @@
     "ember-page-title": "^7.0.0",
     "ember-qunit": "^6.0.0",
     "ember-resolver": "^8.0.3",
-    "ember-scoped-css-unplugin": "workspace:*",
+    "ember-scoped-css": "workspace:*",
     "ember-source": "~4.8.0",
     "ember-template-lint": "^4.16.1",
     "eslint": "^7.32.0",
@@ -70,5 +70,10 @@
   },
   "ember": {
     "edition": "octane"
+  },
+  "ember-addon": {
+    "assets": [
+      "/assets/scoped-addon-scoped-components.css"
+    ]
   }
 }
