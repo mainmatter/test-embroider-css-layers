@@ -1,6 +1,17 @@
-.second{
-  color: green;
+div {
+  width: 200px;
+  border: 1px solid black;
+  padding: 0px 15px;
+  margin-top: 15px;
 }
-.second::before{
-  content:'second.css -> '
+
+.header {
+  margin-top: 0;
+  background-color: lightcoral;
+  padding: 15px;
+  margin: 0px -15px;
+}
+
+.message {
+  font-style: italic;
 }

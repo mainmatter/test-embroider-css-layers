@@ -1,9 +1,3 @@
-h1{
-  color: blue;
+h3 {
+  background-color: lightgreen;
 }
-
-h1::before{
-  content:'global.css -> '
-}
-
-
