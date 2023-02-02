@@ -1,5 +1,6 @@
 {
   "plugins": [
+    // "ember-scoped-css/src/css-colocation-plugin",
     "@embroider/addon-dev/template-colocation-plugin",
     ["@babel/plugin-proposal-decorators", { "legacy": true }],
     "@babel/plugin-proposal-class-properties"

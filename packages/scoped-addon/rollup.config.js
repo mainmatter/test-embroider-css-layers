@@ -1,7 +1,7 @@
 import babel from '@rollup/plugin-babel';
 import copy from 'rollup-plugin-copy';
 import { Addon } from '@embroider/addon-dev/rollup';
-import { rollupScopedComponents } from 'ember-scoped-css';
+import { rollupCssColocation, rollupCssScoping } from 'ember-scoped-css';
 
 const addon = new Addon({
   srcDir: 'src',
@@ -14,10 +14,10 @@ export default {
   output: addon.output(),
 
   plugins: [
-    rollupScopedComponents({
-      addonDir: __dirname,
-      componentsRelativePath: 'src/components',
-    }),
+    // rollupScopedComponents({
+    //   addonDir: __dirname,
+    //   componentsRelativePath: 'src/components',
+    // }),
     // These are the modules that users should be able to import from your
     // addon. Anything not listed here may get optimized away.
     addon.publicEntrypoints(['components/**/*.js', 'index.js']),
@@ -48,6 +48,7 @@ export default {
     // addons are allowed to contain imports of .css files, which we want rollup
     // to leave alone and keep in the published output.
     addon.keepAssets(['**/*.css']),
+    rollupCssColocation(),
 
     // Remove leftover build artifacts when starting a new build.
     addon.clean(),
