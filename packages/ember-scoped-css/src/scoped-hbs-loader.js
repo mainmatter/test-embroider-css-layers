@@ -13,6 +13,8 @@ module.exports = function (source) {
     return source;
   }
 
+  this.addDependency(cssPath);
+
   // read the css file
   const css = readFileSync(cssPath, 'utf-8');
   const { classes, tags } = getClassesTagsFromCss(css);
