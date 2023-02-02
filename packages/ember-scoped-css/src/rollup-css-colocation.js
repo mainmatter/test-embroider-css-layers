@@ -1,6 +1,5 @@
 const path = require('path');
-const { existsSync } = require('fs');
-const { readFileSync } = require('fs');
+const { readFileSync, existsSync } = require('fs');
 const md5 = require('blueimp-md5');
 const rewriteCss = require('./rewriteCss');
 const replaceHbsInJs = require('./replaceHbsInJs');

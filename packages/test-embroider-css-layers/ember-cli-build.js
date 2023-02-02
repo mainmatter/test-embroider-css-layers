@@ -31,9 +31,6 @@ module.exports = function (defaults) {
     ],
     packagerOptions: {
       webpackConfig: {
-        plugins: [
-          new ScopedComponents(path.resolve(__dirname, 'app/components')),
-        ],
         module: {
           rules: [
             {
@@ -43,9 +40,31 @@ module.exports = function (defaults) {
                   loader: require.resolve(
                     'ember-scoped-css/src/scoped-hbs-loader.js'
                   ),
-                  // '/Users/stanislav/simplabs/test-embroider-css-layers/ember-scoped-css/scoped-hbs-loader.js',
                 },
               ],
+              exclude: [/node_modules/, /dist/, /assets/],
+            },
+            {
+              test: /\.js$/,
+              use: [
+                {
+                  loader: require.resolve(
+                    'ember-scoped-css/src/scoped-js-loader.js'
+                  ),
+                },
+              ],
+              exclude: [/node_modules/, /dist/, /assets/],
+            },
+            {
+              test: /\.css$/,
+              use: [
+                {
+                  loader: require.resolve(
+                    'ember-scoped-css/src/scoped-css-loader.js'
+                  ),
+                },
+              ],
+              exclude: [/node_modules/, /dist/, /assets/],
             },
           ],
         },

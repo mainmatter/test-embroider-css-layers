@@ -2,18 +2,19 @@ const path = require('path');
 const md5 = require('blueimp-md5');
 const getClassesTagsFromCss = require('./getClassesTagsFromCss');
 const rewriteHbs = require('./rewriteHbs');
+const { existsSync, readFileSync } = require('fs');
 
 module.exports = function (source) {
   // get path of the template and replace it with the path of the css file
   const cssPath = this.resourcePath.replace('.hbs', '.css');
 
   // if css file does not exist, return the original template
-  if (!this.fs.existsSync(cssPath)) {
+  if (!existsSync(cssPath)) {
     return source;
   }
 
   // read the css file
-  const css = this.fs.readFileSync(cssPath, 'utf-8');
+  const css = readFileSync(cssPath, 'utf-8');
   const { classes, tags } = getClassesTagsFromCss(css);
 
   // generate unique postfix
