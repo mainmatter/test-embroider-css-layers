@@ -28,12 +28,11 @@ module.exports = function rollupCssColocation(options = {}) {
             'precompileTemplate',
             code,
             (hbs) => {
+              // add dependency to the css file
+              this.addWatchFile(cssFileName);
               return rewriteHbs(hbs, classes, tags, postfix);
             }
           );
-
-          // add dependency to the css file
-          this.addWatchFile(cssFileName);
 
           return rewrittenHbsJs;
         }
