@@ -15,7 +15,10 @@ module.exports = function (functionName, script, replaceFunction) {
           node.arguments[0].quasis[0].value.raw = replaceFunction(
             node.arguments[0].quasis[0].value.raw
           );
-        } else if (node.arguments[0].type === 'Literal') {
+        } else if (
+          node.arguments[0].type === 'StringLiteral' ||
+          node.arguments[0].type === 'Literal'
+        ) {
           node.arguments[0].value = replaceFunction(node.arguments[0].value);
         }
       }

@@ -32,6 +32,9 @@ module.exports = function rollupCssColocation(options = {}) {
             }
           );
 
+          // add dependency to the css file
+          this.addWatchFile(cssFileName);
+
           return rewrittenHbsJs;
         }
       } else if (id.endsWith('js')) {
