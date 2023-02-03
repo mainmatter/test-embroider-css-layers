@@ -1,15 +1,11 @@
 const scopedHbsLoader = require('./src/scoped-hbs-loader');
-const ScopedComponents = require('./src/scoped-components');
-const rollupScopedComponents = require('./src/rollup-scoped-components');
-const cssColocationPlugin = require('./src/css-colocation-plugin');
+const scopedCssLoader = require('./src/scoped-css-loader');
+const scopedJsLoader = require('./src/scoped-js-loader');
 const rollupCssColocation = require('./src/rollup-css-colocation');
-const rollupCssScoping = require('./src/rollup-css-scoping');
 
 module.exports = {
   scopedHbsLoader,
-  ScopedComponents,
-  rollupScopedComponents,
-  cssColocationPlugin,
+  scopedCssLoader,
+  scopedJsLoader,
   rollupCssColocation,
-  rollupCssScoping,
 };
