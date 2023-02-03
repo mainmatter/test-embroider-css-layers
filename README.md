@@ -15,7 +15,7 @@ This app is an investigation of how to implement scoped CSS in Ember. It should 
 
 1. webpack `scoped-js-loader` is used for loading JS and GJS files. It does a few things:
 
-   - if there is co-located CSS file it adds import with JS file. `import './co-located.css'`
+   - if there is co-located CSS file it will add import to CSS file. `import './co-located.css'`
    - if it is GJS file it extracts and save co-located CSS file. (it will fire `scoped-css-loader` described below)
    - if there is a template in GJS file it rewrites classes in the template.
 
@@ -36,7 +36,7 @@ In production environment is used [`mini-css-extract-plugin`](https://github.com
 
 1. try to implement all three loaders as unplugin and use them in Embroider app and V2 addon.
 
-## Requirement
+# NOTES from investigation
 
 A custom-css-loader should discover `@import url('scoped-components.css')` in `app/styles/app.css`.
 If the `scoped-components.css` is imported then the custom-css-loader will load and emit all co-located CSS files.
