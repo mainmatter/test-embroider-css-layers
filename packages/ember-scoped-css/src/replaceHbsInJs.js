@@ -1,7 +1,12 @@
 const recast = require('recast');
+const babelParser = require('recast/parsers/babel');
+
+const parseOptions = {
+  parser: babelParser,
+};
 
 module.exports = function (functionName, script, replaceFunction) {
-  const ast = recast.parse(script);
+  const ast = recast.parse(script, parseOptions);
   recast.visit(ast, {
     visitCallExpression(path) {
       const node = path.node;
