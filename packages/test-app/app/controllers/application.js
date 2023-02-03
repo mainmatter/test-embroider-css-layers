@@ -1,0 +1,6 @@
+import '../templates/application.css';
+import Controller from '@ember/controller';
+
+export default class ApplicationController extends Controller {
+  time = new Date();
+}
