@@ -13,10 +13,8 @@ module.exports = function (source) {
   if (hbsExists || gjsExists) {
     const cssFileName = basename(cssPath);
     const postfix = 'e' + md5(cssFileName).substring(0, 8);
-    const rewrittenCss = rewriteCss(source, postfix);
-    const resultCss =
-      `/* ${cssFileName} */\n@layer components {\n\n` + rewrittenCss + '\n}\n';
-    return resultCss;
+    const rewrittenCss = rewriteCss(source, postfix, cssFileName);
+    return rewrittenCss;
   } else {
     return source;
   }

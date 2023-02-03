@@ -18,12 +18,14 @@ function rewriteSelector(sel, postfix) {
   return transformed;
 }
 
-module.exports = function rewriteCss(css, postfix) {
+module.exports = function rewriteCss(css, postfix, fileName) {
   const ast = postcss.parse(css);
   ast.walk((node) => {
     if (node.type === 'rule') {
       node.selector = rewriteSelector(node.selector, postfix);
     }
   });
-  return ast.toString();
+
+  const rewrittenCss = ast.toString();
+  return `/* ${fileName} */\n@layer components {\n\n` + rewrittenCss + '\n}\n';
 };

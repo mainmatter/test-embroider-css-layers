@@ -62,11 +62,12 @@ module.exports = function rollupCssColocation(options = {}) {
         // check if it is colocated css file
         if (colocatedComponents.some((c) => c.css === fileName)) {
           const postfix = 'e' + md5(fileName).substring(0, 8);
-          const rewrittenCss = rewriteCss(bundle[asset].source, postfix);
-          bundle[asset].source =
-            `/* ${fileName} */\n@layer components {\n\n` +
-            rewrittenCss +
-            '\n}\n';
+          const rewrittenCss = rewriteCss(
+            bundle[asset].source,
+            postfix,
+            fileName
+          );
+          bundle[asset].source = rewrittenCss;
         }
       }
     },
