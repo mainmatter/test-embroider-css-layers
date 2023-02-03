@@ -17,10 +17,6 @@ module.exports = function (source) {
   let originalCss;
   if (source.includes('<style>') && source.includes('</style>')) {
     originalCss = source.match(/<style>([\s\S]*)<\/style>/)[1];
-    // const rewrittenCss = rewriteCss(originalCss, postfix);
-    // const resultCss =
-    //   `/* ${cssFileName} */\n@layer components {\n\n` + rewrittenCss + '\n}\n';
-    // write file to disk
     writeFileSync(cssPath, originalCss);
 
     // remove the css from the gjs file
