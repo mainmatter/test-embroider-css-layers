@@ -25,7 +25,7 @@ module.exports = class ScopedComponents {
         // Rewrite the CSS files
         const rewritenFiles = cssFiles.map((file) => {
           const fileName = path.basename(file);
-          const postfix = md5(fileName).substring(0, 8);
+          const postfix = 'e' + md5(fileName).substring(0, 8);
           const rewrittenCss = rewriteCss(
             fs.readFileSync(file, 'utf-8'),
             postfix

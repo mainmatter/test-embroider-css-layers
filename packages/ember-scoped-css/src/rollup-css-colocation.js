@@ -22,7 +22,7 @@ module.exports = function rollupCssColocation(options = {}) {
           const cssFileName = hbsPath.replace('.hbs', '.css');
           const css = readFileSync(cssFileName, 'utf-8');
           const { classes, tags } = getClassesTagsFromCss(css);
-          const postfix = md5(path.basename(cssFileName)).substring(0, 8);
+          const postfix = 'e' + md5(path.basename(cssFileName)).substring(0, 8);
 
           const rewrittenHbsJs = replaceHbsInJs(
             'precompileTemplate',
@@ -59,7 +59,7 @@ module.exports = function rollupCssColocation(options = {}) {
 
         // check if it is colocated css file
         if (colocatedComponents.some((c) => c.css === fileName)) {
-          const postfix = md5(fileName).substring(0, 8);
+          const postfix = 'e' + md5(fileName).substring(0, 8);
           const rewrittenCss = rewriteCss(bundle[asset].source, postfix);
           bundle[asset].source =
             `/* ${fileName} */\n@layer components {\n\n` +

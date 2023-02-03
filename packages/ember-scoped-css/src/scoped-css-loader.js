@@ -12,7 +12,7 @@ module.exports = function (source) {
   const gjsExists = existsSync(gjsPath);
   if (hbsExists || gjsExists) {
     const cssFileName = basename(cssPath);
-    const postfix = md5(cssFileName).substring(0, 8);
+    const postfix = 'e' + md5(cssFileName).substring(0, 8);
     const rewrittenCss = rewriteCss(source, postfix);
     const resultCss =
       `/* ${cssFileName} */\n@layer components {\n\n` + rewrittenCss + '\n}\n';

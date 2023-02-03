@@ -21,7 +21,7 @@ module.exports = function (source) {
 
   // generate unique postfix
   const fileName = path.basename(cssPath);
-  const postfix = md5(fileName).substring(0, 8);
+  const postfix = 'e' + md5(fileName).substring(0, 8);
 
   // rewrite the template
   const transformedHbs = rewriteHbs(source, classes, tags, postfix);

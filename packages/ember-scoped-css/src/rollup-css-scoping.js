@@ -42,7 +42,7 @@ module.exports = function rollupCssScoping(options = {}) {
       //   return;
       // }
       // const fileName = path.basename(id);
-      // const postfix = md5(fileName).substring(0, 8);
+      // const postfix = 'e' + md5(fileName).substring(0, 8);
       // const rewrittenCss = rewriteCss(code, postfix);
       // return `/* ${fileName} */\n` + rewrittenCss;
     },

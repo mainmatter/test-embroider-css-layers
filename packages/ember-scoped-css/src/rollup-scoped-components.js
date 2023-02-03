@@ -18,7 +18,7 @@ function getFileNames(dir, pattern) {
 
 async function loadAndRewriteCss(filePath) {
   const fileName = path.basename(filePath);
-  const postfix = md5(fileName).substring(0, 8);
+  const postfix = 'e' + md5(fileName).substring(0, 8);
   const file = await fs.readFile(filePath, 'utf-8');
   const rewrittenCss = rewriteCss(file, postfix);
   return `/* ${fileName} */\n` + rewrittenCss;
