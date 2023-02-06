@@ -5,6 +5,8 @@ import {
   rollupJsPlugin,
   rollupHbsPlugin,
   rollupCssPlugin,
+  rollupGjsPlugin,
+  rollupEmberTemplateImportsPlugin,
 } from 'ember-scoped-css';
 
 const addon = new Addon({
@@ -52,6 +54,7 @@ export default {
     // addons are allowed to contain imports of .css files, which we want rollup
     // to leave alone and keep in the published output.
     addon.keepAssets(['**/*.css']),
+    rollupGjsPlugin(__dirname, rollupEmberTemplateImportsPlugin()),
     rollupJsPlugin(),
     rollupHbsPlugin(),
     rollupCssPlugin(),
