@@ -12,8 +12,6 @@ module.exports = function (source) {
 
   // if source contains "<style>" and "</style>", it is a gjs file with embedded css
   // cut it out and emmit it as a separate css file
-  const cssFileName = path.basename(cssPath);
-  const postfix = getPostfix(cssFileName);
   let originalCss;
   if (source.includes('<style>') && source.includes('</style>')) {
     originalCss = source.match(/<style>([\s\S]*)<\/style>/)[1];
@@ -24,17 +22,22 @@ module.exports = function (source) {
   }
 
   // check if the css file exists
-  const cssExists = originalCss || existsSync(cssPath);
-  if (cssExists) {
+
+  const cssOnDiskExists = existsSync(cssPath);
+  if (originalCss || cssOnDiskExists) {
     // try to rewrite template in gjs file
     const css = originalCss || readFileSync(cssPath, 'utf-8');
     const { classes, tags } = getClassesTagsFromCss(css);
+    const cssFileName = path.basename(cssPath);
+    const postfix = getPostfix(cssFileName);
 
     const rewrittenHbsJs = replaceHbsInJs(
       '__GLIMMER_TEMPLATE',
       source,
       (hbs) => {
-        this.addDependency(cssPath);
+        if (cssOnDiskExists) {
+          this.addDependency(cssPath);
+        }
         return rewriteHbs(hbs, classes, tags, postfix);
       }
     );

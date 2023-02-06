@@ -11,7 +11,7 @@ module.exports = function rollupCssColocation(options = {}) {
     name: 'rollup-js-plugin',
 
     transform(code, id) {
-      if (id.endsWith('js')) {
+      if (id.endsWith('.js')) {
         const cssPath = id.replace('.js', '.css');
 
         // check if the css file exists

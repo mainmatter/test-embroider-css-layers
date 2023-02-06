@@ -13,6 +13,23 @@ module.exports = function rollupCssColocation(options = {}) {
   return {
     name: 'rollup-css-plugin',
 
+    async resolveId(importee, importer) {
+      if (!importee.endsWith('.css')) {
+        return;
+      }
+
+      const cssRelativePath = importee.replace('./', '').replace('.css', '.js');
+      if (importer.endsWith(cssRelativePath)) {
+        return {
+          id: importee.replace('./', ''),
+          external: true,
+          meta: {
+            css: { originalId: importer },
+          },
+        };
+      }
+    },
+
     generateBundle(options, bundle) {
       for (let asset in bundle) {
         if (!asset.endsWith('css') || !bundle[asset.replace('css', 'js')]) {
