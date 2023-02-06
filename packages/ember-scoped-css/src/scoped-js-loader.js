@@ -1,7 +1,7 @@
 const replaceHbsInJs = require('./replaceHbsInJs');
 const getClassesTagsFromCss = require('./getClassesTagsFromCss');
 const rewriteHbs = require('./rewriteHbs');
-const md5 = require('blueimp-md5');
+const getPostfix = require('./getPostfix');
 const path = require('path');
 const { existsSync, readFileSync, writeFileSync } = require('fs');
 const rewriteCss = require('./rewriteCss');
@@ -13,7 +13,7 @@ module.exports = function (source) {
   // if source contains "<style>" and "</style>", it is a gjs file with embedded css
   // cut it out and emmit it as a separate css file
   const cssFileName = path.basename(cssPath);
-  const postfix = 'e' + md5(cssFileName).substring(0, 8);
+  const postfix = getPostfix(cssFileName);
   let originalCss;
   if (source.includes('<style>') && source.includes('</style>')) {
     originalCss = source.match(/<style>([\s\S]*)<\/style>/)[1];

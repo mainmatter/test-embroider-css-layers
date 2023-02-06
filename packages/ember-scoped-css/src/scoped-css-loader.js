@@ -1,6 +1,6 @@
 const { existsSync } = require('fs');
 const { basename } = require('path');
-const md5 = require('blueimp-md5');
+const getPostfix = require('./getPostfix');
 const rewriteCss = require('./rewriteCss');
 
 module.exports = function (source) {
@@ -12,7 +12,7 @@ module.exports = function (source) {
   const gjsExists = existsSync(gjsPath);
   if (hbsExists || gjsExists) {
     const cssFileName = basename(cssPath);
-    const postfix = 'e' + md5(cssFileName).substring(0, 8);
+    const postfix = getPostfix(cssFileName);
     const rewrittenCss = rewriteCss(source, postfix, cssFileName);
     return rewrittenCss;
   } else {

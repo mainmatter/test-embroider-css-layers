@@ -1,6 +1,6 @@
 const path = require('path');
 const { readFileSync, existsSync } = require('fs');
-const md5 = require('blueimp-md5');
+const getPostfix = require('./getPostfix');
 const rewriteCss = require('./rewriteCss');
 const replaceHbsInJs = require('./replaceHbsInJs');
 const getClassesTagsFromCss = require('./getClassesTagsFromCss');
@@ -22,7 +22,7 @@ module.exports = function rollupCssColocation(options = {}) {
           const cssFileName = hbsPath.replace('.hbs', '.css');
           const css = readFileSync(cssFileName, 'utf-8');
           const { classes, tags } = getClassesTagsFromCss(css);
-          const postfix = 'e' + md5(path.basename(cssFileName)).substring(0, 8);
+          const postfix = getPostfix(path.basename(cssFileName));
 
           const rewrittenHbsJs = replaceHbsInJs(
             'precompileTemplate',
@@ -61,7 +61,7 @@ module.exports = function rollupCssColocation(options = {}) {
 
         // check if it is colocated css file
         if (colocatedComponents.some((c) => c.css === fileName)) {
-          const postfix = 'e' + md5(fileName).substring(0, 8);
+          const postfix = getPostfix(fileName);
           const rewrittenCss = rewriteCss(
             bundle[asset].source,
             postfix,

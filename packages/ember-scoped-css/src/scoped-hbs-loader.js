@@ -1,5 +1,5 @@
 const path = require('path');
-const md5 = require('blueimp-md5');
+const getPostfix = require('./getPostfix');
 const getClassesTagsFromCss = require('./getClassesTagsFromCss');
 const rewriteHbs = require('./rewriteHbs');
 const { existsSync, readFileSync } = require('fs');
@@ -21,7 +21,7 @@ module.exports = function (source) {
 
   // generate unique postfix
   const fileName = path.basename(cssPath);
-  const postfix = 'e' + md5(fileName).substring(0, 8);
+  const postfix = getPostfix(fileName);
 
   // rewrite the template
   const transformedHbs = rewriteHbs(source, classes, tags, postfix);
