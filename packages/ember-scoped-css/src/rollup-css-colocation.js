@@ -54,22 +54,5 @@ module.exports = function rollupCssColocation(options = {}) {
         }
       }
     },
-
-    generateBundle(options, bundle) {
-      for (let asset in bundle) {
-        if (!asset.endsWith('css') || !bundle[asset.replace('css', 'js')]) {
-          continue;
-        }
-
-        const cssFileName = path.basename(asset);
-        const postfix = getPostfix(cssFileName);
-        const rewrittenCss = rewriteCss(
-          bundle[asset].source,
-          postfix,
-          cssFileName
-        );
-        bundle[asset].source = rewrittenCss;
-      }
-    },
   };
 };
