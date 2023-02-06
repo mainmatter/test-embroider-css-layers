@@ -1,7 +1,7 @@
 import babel from '@rollup/plugin-babel';
 import copy from 'rollup-plugin-copy';
 import { Addon } from '@embroider/addon-dev/rollup';
-import { rollupCssColocation, rollupCssScoping } from 'ember-scoped-css';
+import { rollupCssColocation, rollupCssPlugin } from 'ember-scoped-css';
 
 const addon = new Addon({
   srcDir: 'src',
@@ -49,6 +49,7 @@ export default {
     // to leave alone and keep in the published output.
     addon.keepAssets(['**/*.css']),
     rollupCssColocation(),
+    rollupCssPlugin(),
 
     // Remove leftover build artifacts when starting a new build.
     addon.clean(),
