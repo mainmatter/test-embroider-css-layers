@@ -2,11 +2,10 @@ import babel from '@rollup/plugin-babel';
 import copy from 'rollup-plugin-copy';
 import { Addon } from '@embroider/addon-dev/rollup';
 import {
-  rollupJsPlugin,
   rollupHbsPlugin,
-  rollupCssPlugin,
   rollupGjsPlugin,
   rollupEmberTemplateImportsPlugin,
+  scopedRollupPlugin,
 } from 'ember-scoped-css';
 
 const addon = new Addon({
@@ -55,9 +54,8 @@ export default {
     // to leave alone and keep in the published output.
     addon.keepAssets(['**/*.css']),
     rollupGjsPlugin(__dirname, rollupEmberTemplateImportsPlugin()),
-    rollupJsPlugin(),
     rollupHbsPlugin(),
-    rollupCssPlugin(),
+    scopedRollupPlugin(),
 
     // Remove leftover build artifacts when starting a new build.
     addon.clean(),

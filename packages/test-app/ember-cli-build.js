@@ -2,6 +2,7 @@
 
 const EmberApp = require('ember-cli/lib/broccoli/ember-app');
 const { scopedWebpackPlugin } = require('ember-scoped-css');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = function (defaults) {
   const app = new EmberApp(defaults, {
@@ -31,7 +32,17 @@ module.exports = function (defaults) {
     ],
     packagerOptions: {
       webpackConfig: {
-        plugins: [new scopedWebpackPlugin()],
+        plugins: [
+          new scopedWebpackPlugin(),
+          new CopyWebpackPlugin({
+            patterns: [
+              {
+                from: 'node_modules/scoped-addon/dist/scoped.css',
+                to: 'assets/scoped-addon',
+              },
+            ],
+          }),
+        ],
         module: {
           rules: [
             {

@@ -2,4 +2,5 @@
 /* @layer components, base; */
 @import "global.css" layer(base);
 @import "scoped.css" layer(components);
+@import "scoped-addon/scoped.css" layer(components);
 @layer base, components;

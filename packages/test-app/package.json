@@ -34,6 +34,7 @@
     "babel-eslint": "^10.1.0",
     "broccoli-asset-rev": "^3.0.0",
     "concurrently": "^7.6.0",
+    "copy-webpack-plugin": "^11.0.0",
     "ember-auto-import": "^2.5.0",
     "ember-cli": "~4.10.0",
     "ember-cli-app-version": "^5.0.0",
@@ -49,6 +50,7 @@
     "ember-page-title": "^7.0.0",
     "ember-qunit": "^6.1.1",
     "ember-resolver": "^10.0.0",
+    "ember-scoped-css": "workspace:*",
     "ember-source": "~4.10.0",
     "ember-template-imports": "^3.4.1",
     "ember-template-lint": "^5.3.1",
@@ -62,9 +64,8 @@
     "prettier": "^2.8.3",
     "qunit": "^2.19.3",
     "qunit-dom": "^2.0.0",
-    "tracked-built-ins": "^3.1.0",
-    "ember-scoped-css": "workspace:*",
     "scoped-addon": "workspace:*",
+    "tracked-built-ins": "^3.1.0",
     "webpack": "^5.75.0"
   },
   "engines": {

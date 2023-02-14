@@ -49,8 +49,7 @@ module.exports = function (addonDir, rollupEmberTemplateImports) {
           }
         );
 
-        const transformed = `import './${cssFileName}';\n${rewrittenHbsJs}`;
-        return transformed;
+        return rewrittenHbsJs;
       } else {
         return source;
       }
