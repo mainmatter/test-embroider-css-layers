@@ -26,5 +26,5 @@ module.exports = function (source) {
   // rewrite the template
   const transformedHbs = rewriteHbs(source, classes, tags, postfix);
 
-  return '<!-- Processed by layer-loader -->\n' + transformedHbs;
+  return `<!-- ${fileName} -->\n` + transformedHbs;
 };

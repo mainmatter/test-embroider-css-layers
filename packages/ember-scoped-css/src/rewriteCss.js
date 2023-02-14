@@ -27,5 +27,6 @@ module.exports = function rewriteCss(css, postfix, fileName) {
   });
 
   const rewrittenCss = ast.toString();
-  return `/* ${fileName} */\n@layer components {\n\n` + rewrittenCss + '\n}\n';
+  // return `/* ${fileName} */\n@layer components {\n\n` + rewrittenCss + '\n}\n';
+  return `/* ${fileName} */\n ${rewrittenCss}`;
 };

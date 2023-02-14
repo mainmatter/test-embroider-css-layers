@@ -1,6 +1,7 @@
 'use strict';
 
 const EmberApp = require('ember-cli/lib/broccoli/ember-app');
+const { scopedWebpackPlugin } = require('ember-scoped-css');
 
 module.exports = function (defaults) {
   const app = new EmberApp(defaults, {
@@ -21,6 +22,7 @@ module.exports = function (defaults) {
   // along with the exports of each module as its value.
 
   const { Webpack } = require('@embroider/webpack');
+
   return require('@embroider/compat').compatBuild(app, Webpack, {
     skipBabel: [
       {
@@ -29,6 +31,7 @@ module.exports = function (defaults) {
     ],
     packagerOptions: {
       webpackConfig: {
+        plugins: [new scopedWebpackPlugin()],
         module: {
           rules: [
             {
@@ -53,28 +56,6 @@ module.exports = function (defaults) {
               ],
               exclude: [/node_modules/, /dist/, /assets/],
             },
-            {
-              test: /\.css$/,
-              use: [
-                {
-                  loader: require.resolve(
-                    'ember-scoped-css/src/scoped-css-loader.js'
-                  ),
-                },
-              ],
-              exclude: [/node_modules/, /dist/, /assets/],
-            },
-            // {
-            //   test: /\.gjs$/,
-            //   use: [
-            //     {
-            //       loader: require.resolve(
-            //         'ember-scoped-css/src/scoped-gjs-loader.js'
-            //       ),
-            //     },
-            //   ],
-            //   exclude: [/node_modules/, /dist/, /assets/],
-            // },
           ],
         },
       },

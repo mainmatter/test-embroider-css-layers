@@ -42,9 +42,10 @@ module.exports = function (source) {
       }
     );
 
+    return rewrittenHbsJs;
     // if colocated css file exists, import it
-    const transformed = `import './${cssFileName}';\n${rewrittenHbsJs}`;
-    return transformed;
+    // const transformed = `import './${cssFileName}';\n${rewrittenHbsJs}`;
+    // return transformed;
   } else {
     return source;
   }

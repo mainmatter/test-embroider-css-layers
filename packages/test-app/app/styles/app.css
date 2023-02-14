@@ -1,4 +1,5 @@
 /* define order of css layers */
-@layer base, components;
 /* @layer components, base; */
-@import 'global.css' layer(base);
+@import "global.css" layer(base);
+@import "scoped.css" layer(components);
+@layer base, components;
