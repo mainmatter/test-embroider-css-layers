@@ -1,7 +1,7 @@
 'use strict';
 
 const EmberApp = require('ember-cli/lib/broccoli/ember-app');
-const { scopedWebpackPlugin } = require('ember-scoped-css');
+const { scopedWebpackPlugin, appJsUnplugin } = require('ember-scoped-css');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = function (defaults) {
@@ -33,35 +33,47 @@ module.exports = function (defaults) {
     packagerOptions: {
       webpackConfig: {
         plugins: [
-          new scopedWebpackPlugin(),
-          new CopyWebpackPlugin({
-            patterns: [
-              {
-                from: 'node_modules/scoped-addon/dist/scoped.css',
-                to: 'assets/scoped-addon',
-              },
-            ],
-          }),
+          appJsUnplugin.webpack(),
+          // new scopedWebpackPlugin(),
+          // new CopyWebpackPlugin({
+          //   patterns: [
+          //     {
+          //       from: 'node_modules/scoped-addon/dist/scoped.css',
+          //       to: 'assets/scoped-addon',
+          //     },
+          //   ],
+          // }),
         ],
         module: {
           rules: [
+            //   {
+            //     test: /\.hbs$/,
+            //     use: [
+            //       {
+            //         loader: require.resolve(
+            //           'ember-scoped-css/src/scoped-hbs-loader.js'
+            //         ),
+            //       },
+            //     ],
+            //     exclude: [/node_modules/, /dist/, /assets/],
+            //   },
+            //   {
+            //     test: /\.js$/,
+            //     use: [
+            //       {
+            //         loader: require.resolve(
+            //           'ember-scoped-css/src/scoped-js-loader.js'
+            //         ),
+            //       },
+            //     ],
+            //     exclude: [/node_modules/, /dist/, /assets/],
+            //   },
             {
-              test: /\.hbs$/,
+              test: /\.css$/,
               use: [
                 {
                   loader: require.resolve(
-                    'ember-scoped-css/src/scoped-hbs-loader.js'
-                  ),
-                },
-              ],
-              exclude: [/node_modules/, /dist/, /assets/],
-            },
-            {
-              test: /\.js$/,
-              use: [
-                {
-                  loader: require.resolve(
-                    'ember-scoped-css/src/scoped-js-loader.js'
+                    'ember-scoped-css/src/scoped-css-loader.js'
                   ),
                 },
               ],

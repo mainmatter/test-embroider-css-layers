@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div title='test' class='existing second'>
     <h3 class='header'>
       {{@title}}
     </h3>

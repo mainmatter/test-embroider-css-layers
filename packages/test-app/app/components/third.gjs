@@ -1,21 +1,21 @@
 <style>
-div {
-  width: 170px;
-  border: 1px solid black;
-  padding: 0px 15px;
-  margin-top: 15px;
-}
+  div {
+    width: 170px;
+    border: 1px solid black;
+    padding: 0px 15px;
+    margin-top: 15px;
+  }
 
-.header {
-  margin-top: 0;
-  background-color: lightgreen;
-  padding: 15px;
-  margin: 0px -15px;
-}
+  .header {
+    margin-top: 0;
+    background-color: lightgreen;
+    padding: 15px;
+    margin: 0px -15px;
+  }
 
-.message {
-  font-weight: bold;
-}
+  .message {
+    font-weight: bold;
+  }
 </style>
 <template>
   <div>

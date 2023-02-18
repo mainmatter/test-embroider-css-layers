@@ -10,6 +10,11 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@glimmer/compiler": "^0.84.2",
+    "@glimmer/debug": "2.0.0-beta.13",
+    "@glimmer/manager": "^0.84.2",
+    "@glimmer/opcode-compiler": "^0.84.2",
+    "@glimmer/syntax": "^0.84.2",
     "blueimp-md5": "^2.19.0",
     "ember-source": "^4.10.0",
     "ember-template-imports": "^3.4.1",

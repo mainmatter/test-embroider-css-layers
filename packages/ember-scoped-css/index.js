@@ -9,6 +9,7 @@ const rollupGjsPlugin = require('./src/rollup-gjs-plugin');
 const rollupEmberTemplateImportsPlugin = require('./src/rollup-ember-template-imports-plugin');
 const scopedWebpackPlugin = require('./src/scoped-webpack-plugin');
 const scopedRollupPlugin = require('./src/scoped-rollup-plugin');
+const appJsUnplugin = require('./src/app-js-unplugin');
 
 module.exports = {
   scopedHbsLoader,
@@ -21,4 +22,5 @@ module.exports = {
   rollupEmberTemplateImportsPlugin,
   scopedWebpackPlugin,
   scopedRollupPlugin,
+  appJsUnplugin,
 };
