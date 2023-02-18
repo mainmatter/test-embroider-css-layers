@@ -41,14 +41,12 @@ function inflateTagName(tag) {
 
 module.exports = createUnplugin((options) => {
   return {
-    // enforce: 'normal',
-    name: 'unplugin-prefixed-name',
-    // webpack's id filter is outside of loader logic,
-    // an additional hook is needed for better perf on webpack
+    name: 'app-js-unplugin',
+
     transformInclude(id) {
       return id.endsWith('.js') || id.endsWith('.hbs');
     },
-    // just like rollup transform
+
     transform(code, id) {
       return replaceGlimmerAst(code, id, (opcodes, css) => {
         const cssPath = id.replace(/(\.js)|(\.hbs)/, '.css');
@@ -122,6 +120,5 @@ module.exports = createUnplugin((options) => {
         return opcodes;
       });
     },
-    // more hooks coming
   };
 });

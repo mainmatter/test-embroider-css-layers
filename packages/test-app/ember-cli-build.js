@@ -1,7 +1,11 @@
 'use strict';
 
 const EmberApp = require('ember-cli/lib/broccoli/ember-app');
-const { scopedWebpackPlugin, appJsUnplugin } = require('ember-scoped-css');
+const {
+  scopedWebpackPlugin,
+  appJsUnplugin,
+  appCssUnplugin,
+} = require('ember-scoped-css');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = function (defaults) {
@@ -31,9 +35,13 @@ module.exports = function (defaults) {
       },
     ],
     packagerOptions: {
+      // cssLoaderOptions: {
+      //   modules: 'local',
+      // },
       webpackConfig: {
         plugins: [
           appJsUnplugin.webpack(),
+          appCssUnplugin.webpack(),
           // new scopedWebpackPlugin(),
           // new CopyWebpackPlugin({
           //   patterns: [
@@ -68,17 +76,17 @@ module.exports = function (defaults) {
             //     ],
             //     exclude: [/node_modules/, /dist/, /assets/],
             //   },
-            {
-              test: /\.css$/,
-              use: [
-                {
-                  loader: require.resolve(
-                    'ember-scoped-css/src/scoped-css-loader.js'
-                  ),
-                },
-              ],
-              exclude: [/node_modules/, /dist/, /assets/],
-            },
+            // {
+            //   test: /\.css$/,
+            //   use: [
+            //     {
+            //       loader: require.resolve(
+            //         'ember-scoped-css/src/scoped-css-loader.js'
+            //       ),
+            //     },
+            //   ],
+            //   exclude: [/node_modules/, /dist/, /assets/],
+            // },
           ],
         },
       },
