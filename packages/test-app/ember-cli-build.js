@@ -41,7 +41,7 @@ module.exports = function (defaults) {
       webpackConfig: {
         plugins: [
           appJsUnplugin.webpack({ appDir: __dirname }),
-          appCssUnplugin.webpack(),
+          appCssUnplugin.webpack({ appDir: __dirname }),
           // new scopedWebpackPlugin(),
           // new CopyWebpackPlugin({
           //   patterns: [
@@ -55,7 +55,7 @@ module.exports = function (defaults) {
         module: {
           rules: [
             {
-              test: /\.js$/,
+              test: /(\.js)|(\.hbs)$/,
               use: [
                 {
                   loader: require.resolve(

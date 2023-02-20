@@ -2,9 +2,9 @@ import babel from '@rollup/plugin-babel';
 import copy from 'rollup-plugin-copy';
 import { Addon } from '@embroider/addon-dev/rollup';
 import {
-  addonExtractcssUnplugin,
-  rollupCssPlugin,
-  appCssUnplugin,
+  addonCssUnplugin,
+  addonJsUnplugin,
+  rollupHbsPlugin,
 } from 'ember-scoped-css';
 
 import rollupEmberTemplateImportsPlugin from './src/rollup-ember-template-imports-plugin';
@@ -55,6 +55,9 @@ export default {
     // to leave alone and keep in the published output.
     addon.keepAssets(['**/*.css']),
     rollupEmberTemplateImportsPlugin({ addonDir: __dirname }),
+    addonCssUnplugin({ addonDir: __dirname }),
+    addonJsUnplugin.rollup(),
+    rollupHbsPlugin(),
     // addonExtractcssUnplugin.rollup({ addonDir: __dirname }),
     // rollupCssPlugin(),
 

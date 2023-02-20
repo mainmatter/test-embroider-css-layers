@@ -40,12 +40,15 @@ function inflateTagName(tag) {
   throw new Error('Unknown tag');
 }
 
-module.exports = createUnplugin((options) => {
+module.exports = createUnplugin(({ appDir }) => {
   return {
     name: 'app-js-unplugin',
 
     transformInclude(id) {
-      return id.endsWith('.js') || id.endsWith('.hbs');
+      return (
+        id.includes(path.basename(appDir)) &&
+        (id.endsWith('.js') || id.endsWith('.hbs'))
+      );
     },
 
     transform(code, id) {

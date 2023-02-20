@@ -25,15 +25,11 @@ module.exports = function rollupCssColocation(options = {}) {
           const postfix = getPostfix(fileName);
 
           // rewrite the template
-          const rewrittenHbsJs = replaceHbsInJs(
-            'precompileTemplate',
-            code,
-            (hbs) => {
-              // add dependency to the css file
-              this.addWatchFile(cssPath);
-              return rewriteHbs(hbs, classes, tags, postfix);
-            }
-          );
+          const rewrittenHbsJs = replaceHbsInJs(code, (hbs) => {
+            // add dependency to the css file
+            this.addWatchFile(cssPath);
+            return rewriteHbs(hbs, classes, tags, postfix);
+          });
 
           return rewrittenHbsJs;
         }

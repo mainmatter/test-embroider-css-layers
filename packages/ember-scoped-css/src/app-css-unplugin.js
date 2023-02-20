@@ -3,14 +3,15 @@ const { basename } = require('path');
 const { existsSync } = require('fs');
 const getPostfix = require('./getPostfix');
 const rewriteCss = require('./rewriteCss');
+const path = require('path');
 
-module.exports = createUnplugin((options) => {
+module.exports = createUnplugin(({ appDir }) => {
   return {
     enforce: 'pre',
     name: 'app-css-unplugin',
 
     transformInclude(id) {
-      return id.endsWith('.css');
+      return id.includes(path.basename(appDir)) && id.endsWith('.css');
     },
 
     transform(code, cssPath) {

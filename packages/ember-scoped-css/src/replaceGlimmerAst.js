@@ -63,22 +63,22 @@ module.exports = function (script, id, unplugin, replaceFunction) {
         const a = id;
         const newOpcodes = replaceFunction(opcodes, css);
         blockProp.value.value = JSON.stringify(newOpcodes);
-        addImport = true;
-      }
-      // else if (node.callee.name === 'setComponentTemplate') {
-      //   addImport = true;
-      // }
 
-      if (addImport) {
-        // add import './${result.importCssName}'; to the top of the file
-        const fileName = path.basename(cssPath);
-        if (!importPath) {
-          unplugin.addWatchFile(cssPath);
+        // if (process.env.EMBER_ENV === 'production') {
+        if (true) {
+          const fileName = path.basename(cssPath);
+          if (!importPath) {
+            unplugin.addWatchFile(cssPath);
+          }
+          const importCss = recast.parse(
+            `import './${fileName}';\n`,
+            parseOptions
+          );
+          const importCssNode = importCss.program.body[0];
+          ast.program.body.unshift(importCssNode);
         }
-        const importCss = recast.parse(`import './${fileName}';`, parseOptions);
-        const importCssNode = importCss.program.body[0];
-        ast.program.body.unshift(importCssNode);
       }
+
       this.traverse(nodePath);
     },
   });

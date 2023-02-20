@@ -5,12 +5,15 @@ const parseOptions = {
   parser: babelParser,
 };
 
-module.exports = function (functionName, script, replaceFunction) {
+module.exports = function (script, replaceFunction) {
   const ast = recast.parse(script, parseOptions);
   recast.visit(ast, {
     visitCallExpression(path) {
       const node = path.node;
-      if (node.callee.name === functionName) {
+      if (
+        node.callee.name === '__GLIMMER_TEMPLATE' ||
+        node.callee.name === 'precompileTemplate'
+      ) {
         if (node.arguments[0].type === 'TemplateLiteral') {
           node.arguments[0].quasis[0].value.raw = replaceFunction(
             node.arguments[0].quasis[0].value.raw

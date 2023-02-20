@@ -6,7 +6,7 @@ const { existsSync, readFileSync } = require('fs');
 
 module.exports = function (source) {
   // get path of the template and replace it with the path of the css file
-  const cssPath = this.resourcePath.replace(/\.js/, '.css');
+  const cssPath = this.resourcePath.replace(/(\.js)|(\.hbs)/, '.css');
 
   // if css file does not exist, return the original template
   if (!existsSync(cssPath)) {

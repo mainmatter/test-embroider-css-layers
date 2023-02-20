@@ -10,7 +10,8 @@ const scopedWebpackPlugin = require('./src/scoped-webpack-plugin');
 const scopedRollupPlugin = require('./src/scoped-rollup-plugin');
 const appJsUnplugin = require('./src/app-js-unplugin');
 const appCssUnplugin = require('./src/app-css-unplugin');
-const addonExtractcssUnplugin = require('./src/addon-extractcss-unplugin');
+const addonCssUnplugin = require('./src/addon-css-unplugin');
+const addonJsUnplugin = require('./src/addon-js-unplugin');
 
 module.exports = {
   scopedHbsLoader,
@@ -24,5 +25,6 @@ module.exports = {
   scopedRollupPlugin,
   appJsUnplugin,
   appCssUnplugin,
-  addonExtractcssUnplugin,
+  addonCssUnplugin,
+  addonJsUnplugin,
 };
