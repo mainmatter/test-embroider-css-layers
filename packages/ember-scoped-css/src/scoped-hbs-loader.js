@@ -6,7 +6,7 @@ const { existsSync, readFileSync } = require('fs');
 
 module.exports = function (source) {
   // get path of the template and replace it with the path of the css file
-  const cssPath = this.resourcePath.replace('.hbs', '.css');
+  const cssPath = this.resourcePath.replace(/\.js/, '.css');
 
   // if css file does not exist, return the original template
   if (!existsSync(cssPath)) {
@@ -14,17 +14,18 @@ module.exports = function (source) {
   }
 
   this.addDependency(cssPath);
+  return source;
 
-  // read the css file
-  const css = readFileSync(cssPath, 'utf-8');
-  const { classes, tags } = getClassesTagsFromCss(css);
+  // // read the css file
+  // const css = readFileSync(cssPath, 'utf-8');
+  // const { classes, tags } = getClassesTagsFromCss(css);
 
-  // generate unique postfix
-  const fileName = path.basename(cssPath);
-  const postfix = getPostfix(fileName);
+  // // generate unique postfix
+  // const fileName = path.basename(cssPath);
+  // const postfix = getPostfix(fileName);
 
-  // rewrite the template
-  const transformedHbs = rewriteHbs(source, classes, tags, postfix);
+  // // rewrite the template
+  // const transformedHbs = rewriteHbs(source, classes, tags, postfix);
 
-  return `<!-- ${fileName} -->\n` + transformedHbs;
+  // return `<!-- ${fileName} -->\n` + transformedHbs;
 };

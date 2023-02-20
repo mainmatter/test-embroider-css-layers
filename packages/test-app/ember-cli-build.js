@@ -54,17 +54,17 @@ module.exports = function (defaults) {
         ],
         module: {
           rules: [
-            //   {
-            //     test: /\.hbs$/,
-            //     use: [
-            //       {
-            //         loader: require.resolve(
-            //           'ember-scoped-css/src/scoped-hbs-loader.js'
-            //         ),
-            //       },
-            //     ],
-            //     exclude: [/node_modules/, /dist/, /assets/],
-            //   },
+            {
+              test: /\.js$/,
+              use: [
+                {
+                  loader: require.resolve(
+                    'ember-scoped-css/src/scoped-hbs-loader.js'
+                  ),
+                },
+              ],
+              exclude: [/node_modules/, /dist/, /assets/],
+            },
             //   {
             //     test: /\.js$/,
             //     use: [
