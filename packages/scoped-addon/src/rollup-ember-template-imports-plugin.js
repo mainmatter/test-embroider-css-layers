@@ -8,7 +8,7 @@ const {
   TEMPLATE_TAG_PLACEHOLDER,
 } = require('ember-template-imports/lib/util.js');
 
-module.exports = function firstClassComponentTemplates() {
+export default function firstClassComponentTemplates({ addonDir }) {
   return {
     name: 'preprocess-fccts',
     async resolveId(source, importer, options) {
@@ -38,11 +38,11 @@ module.exports = function firstClassComponentTemplates() {
       }
 
       if (FCCT_EXTENSION.test(originalId)) {
-        return await preprocessTemplates(originalId);
+        return await preprocessTemplates(originalId, addonDir, this);
       }
     },
   };
-};
+}
 
 const FCCT_EXTENSION = /\.g([jt]s)$/;
 
@@ -55,7 +55,7 @@ function resolutionFor(originalId) {
   };
 }
 
-async function preprocessTemplates(id) {
+async function preprocessTemplates(id, addonDir, rollup) {
   let ember = (await import('ember-source')).default;
   let contents = await fs.readFile(id, 'utf-8');
 
@@ -72,6 +72,24 @@ async function preprocessTemplates(id) {
     includeSourceMaps: true,
     includeTemplateTokens: true,
   });
+
+  const styleRegex = /<style>([\s\S]*?)<\/style>/g;
+  let styleMatch;
+  const styles = [];
+  while ((styleMatch = styleRegex.exec(contents))) {
+    const styleContent = styleMatch[1];
+    styles.push(styleContent);
+  }
+  if (styles.length) {
+    const relativePath = path.relative(path.join(addonDir, 'src'), id);
+    const css = styles.join('\n\n');
+    rollup.emitFile({
+      type: 'asset',
+      fileName: relativePath.replace(FCCT_EXTENSION, '.css'),
+      source: css,
+    });
+    // await fs.writeFile(id.replace(FCCT_EXTENSION, '.css'), css);
+  }
 
   return result.output;
 }

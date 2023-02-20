@@ -37,6 +37,7 @@
     "@rollup/plugin-babel": "^5.3.0",
     "concurrently": "^7.2.1",
     "ember-scoped-css": "workspace:*",
+    "ember-template-imports": "github:candunaj/ember-template-imports#support-style-tag",
     "ember-template-lint": "^4.0.0",
     "eslint": "^7.32.0",
     "eslint-config-prettier": "^8.3.0",

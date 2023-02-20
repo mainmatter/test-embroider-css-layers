@@ -40,7 +40,7 @@ module.exports = function (defaults) {
       // },
       webpackConfig: {
         plugins: [
-          appJsUnplugin.webpack(),
+          appJsUnplugin.webpack({ appDir: __dirname }),
           appCssUnplugin.webpack(),
           // new scopedWebpackPlugin(),
           // new CopyWebpackPlugin({

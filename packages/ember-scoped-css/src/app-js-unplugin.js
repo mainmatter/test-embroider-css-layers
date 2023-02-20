@@ -7,6 +7,7 @@ const getPostfix = require('./getPostfix');
 const getClassesTagsFromCss = require('./getClassesTagsFromCss');
 // const interfaces = require('@glimmer/interfaces');
 const { readFileSync } = require('fs');
+const { isDeepStrictEqual } = require('util');
 
 function* iterateOpcodes(opcodes) {
   for (let instruction of opcodes) {
@@ -48,12 +49,15 @@ module.exports = createUnplugin((options) => {
     },
 
     transform(code, id) {
-      return replaceGlimmerAst(code, id, (opcodes, css) => {
-        const cssPath = id.replace(/(\.js)|(\.hbs)/, '.css');
-        const cssFileName = path.basename(cssPath);
-        const postfix = getPostfix(cssFileName);
-        const { classes, tags } = getClassesTagsFromCss(css);
+      const cssPath = id.replace(/(\.js)|(\.hbs)/, '.css');
+      const cssFileName = path.basename(cssPath);
+      const postfix = getPostfix(cssFileName);
 
+      return replaceGlimmerAst(code, id, this, (opcodes, css) => {
+        const { classes, tags } = getClassesTagsFromCss(css);
+        const a = code;
+        // this.addWatchFile(cssPath);
+        const tmp = this;
         const insertions = [];
 
         for (let instruction of iterateOpcodes(opcodes[0])) {
@@ -61,7 +65,8 @@ module.exports = createUnplugin((options) => {
           if (
             instruction[0] === 14 &&
             instruction[1] === 0 &&
-            classes.has(instruction[2])
+            instruction[2] &&
+            instruction[2].split(' ').find((i) => classes.has(i.trim()))
           ) {
             // 14 - css attribute, 0 - class
             instruction[2] = instruction[2]
@@ -108,6 +113,7 @@ module.exports = createUnplugin((options) => {
           }
         }
 
+        // insert new instructions
         for (let [instruction, classInstruction] of insertions) {
           const index = opcodes[0].indexOf(instruction);
           opcodes[0].splice(index + 1, 0, classInstruction);

@@ -18,9 +18,14 @@ module.exports = createUnplugin((options) => {
       const gjsPath = cssPath.replace('.css', '.js');
       const hbsExists = existsSync(hbsPath);
       const gjsExists = existsSync(gjsPath);
-      if (hbsExists || gjsExists) {
+      const isInDist = cssPath.includes('/tmp/');
+      if (hbsExists || gjsExists || isInDist) {
         const cssFileName = basename(cssPath);
         const postfix = getPostfix(cssFileName);
+        // if (code.includes(postfix)) {
+        //   // already scoped
+        //   return code;
+        // }
         const rewrittenCss = rewriteCss(code, postfix, cssFileName);
         return rewrittenCss;
       } else {
